@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escala — Aplicación al beneficio</title>
+  <style>
+    /* === ESTILOS GENERALES === */
+    body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+}
+
+main {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto; /* centrado automático */
+}
+    h1 {
+      text-align: center;
+      color: #222;
+    }
+
+    /* Franja corporativa */
+.topbar {
+  width: 100%;
+  background-color: #222;     /* color corporativo oscuro */
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+    /* Hero completo */
+header.hero {
+  position: relative;       /* permite poner elementos encima */
+  width: 100%;
+  height: 60vh;             /* ocupa 60% de la altura de la pantalla */
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Imagen de fondo */
+header.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* se recorta sin deformar */
+  display: block;
+}
+
+/* Menú superpuesto */
+header.hero .menu {
+  position: absolute;       /* se posiciona encima de la imagen */
+  top: 50%;                 /* mitad vertical */
+  left: 50%;                /* mitad horizontal */
+  transform: translate(-50%, -50%); /* centrado exacto */
+  text-align: center;
+}
+
+/* Estilo de los botones del menú */
+header.hero .menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+header.hero .menu ul li a {
+  text-decoration: none;
+  background: rgba(255,255,255,0.7); /* fondo translúcido */
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  color: #333;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+header.hero .menu ul li a:hover {
+  background: rgba(255,255,255,0.9);
+}
+
+    /* === TARJETICAS (CARDS) === */
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card img {
+      display: block;
+      margin: 0 auto 15px auto;
+      max-width: 90%;
+      border-radius: 12px;
+    }
+
+    /* Footer */
+footer {
+  background: #f4f4f4;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Botón “Ir arriba” */
+#toTop {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#toTop:hover {
+  background: #444;
+}
+
+    /* === FORMULARIO === */
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 16px;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .hidden {
+      display: none;
+    }
+    .mensaje {
+      margin-top: 12px;
+      font-weight: bold;
+      color: #007bff;
+    }
+    .error {
+      margin-top: 8px;
+      color: red;
+    }
+
+
+  </style>
+</head>
+<body>
+<header> 
+<!-- Franja corporativa -->
+<div class="topbar">
+  <p>ESCALA RESPONDING</p>
+</div>
+
+<header class="hero">
+  <img src="hero.jpg" alt="Imagen principal">
+  <nav class="menu">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="casos.html">Casos de Éxito</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <main> 
+
+    <!-- TARJETA DE IMAGEN INICIAL -->
+    <div class="card">
+    <h1>Escala Responding <br> Recibe beneficios</h1>
+      <p style="text-align:justified;">Bienvenido a Escala Responding. Revisa los programas vigentes y aplica a los que estén a tu alcance. Responde paso a paso en cada aplicación y gana ya.</p>
+      <img src="escala.jpg" alt="Hero Escala Responding">
+    </div>
+
+    <!-- TARJETA DE BENEFICIO 614 -->
+    <div class="card">
+      <h2>Aplicación Beneficio 614 - Sólo colombianos</h2>
+      <img src="beneficio.jpg" alt="Diseño">
+      <p style="text-align:center;">Estamos aceptando solicitantes a este beneficio hasta finales octubre/2025.</p>
+
+      <!-- Paso 1: pedir nombre -->
+      <div id="paso1">
+        <label for="nombre">Escribe tu nombre completo</label>
+        <input type="text" id="nombre">
+        <button onclick="guardarNombre()">Siguiente</button>
+        <div id="error-nombre" class="error"></div>
+      </div>
+
+      <!-- Paso 2: mostrar saludo y pedir más info -->
+      <div id="paso2" class="hidden">
+        <p id="saludo"></p>
+        <label for="edad">Edad</label>
+        <input type="number" id="edad">
+
+        <label for="nacionalidad">Nacionalidad</label>
+        <input type="text" id="nacionalidad">
+
+        <label for="razon">¿Por qué quieres aplicar?</label>
+        <textarea id="razon"></textarea>
+
+        <button onclick="guardarDetalles()">Siguiente</button>
+        <div id="error-detalles" class="error"></div>
+      </div>
+
+      <!-- Paso 3: pedir email -->
+      <div id="paso3" class="hidden">
+        <p id="final"></p>
+        <label for="email">Tu email</label>
+        <input type="email" id="email">
+        <button onclick="enviarFormulario()">Enviar</button>
+        <div id="error-email" class="error"></div>
+        <div id="mensaje-final" class="mensaje"></div>
+      </div>
+    </div>
+
+    <!-- TARJETA DE AVERIGUADOR (MÓDULO APARTE) -->
+    <div class="card">
+      <h2>Averiguador de deudas</h2>
+      <img src="alivio.webp" alt="Alivio de deudas">
+      <button onclick="averigua()">Averiguar</button>
+      <div id="resultado-averiguar" class="mensaje"></div>
+    </div>
+  </main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-links">
+    <a href="#">Cookies</a>
+    <a href="#">Aviso Legal</a>
+    <a href="#">Política de Privacidad</a>
+  </div>
+  <button id="toTop">⬆ Ir arriba</button>
+  <p class="firma">© 2025 Escala Responding — Gracias por confiar en nosotros</p>
+</footer>
+
+       
+
+  <script>
+    // === VARIABLES GLOBALES ===
+    let datos = {};
+
+    // === PASO 1 ===
+    function guardarNombre() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const error = document.getElementById('error-nombre');
+      if (!nombre) {
+        error.textContent = "Por favor ingresa tu nombre.";
+        return;
+      }
+      error.textContent = "";
+      datos.nombre = nombre;
+      document.getElementById('saludo').textContent = "Hola " + nombre + ", completa tus datos:";
+      document.getElementById('paso1').classList.add('hidden');
+      document.getElementById('paso2').classList.remove('hidden');
+    }
+// === PASO 2 ===
+function guardarDetalles() {
+  const edad = parseInt(document.getElementById('edad').value);
+  const nacionalidad = document.getElementById('nacionalidad').value.trim();
+  const razon = document.getElementById('razon').value.trim();
+  const error = document.getElementById('error-detalles');
+
+  // VALIDACIÓN 1: Edad
+  if (!edad || edad < 18) {
+    error.textContent = "Debes ser mayor de edad para participar.";
+    return; // corta aquí si no pasa
+  }
+
+  // VALIDACIÓN 2: Nacionalidad
+  const nacionalidadNormalizada = nacionalidad.toLowerCase(); // normalizamos
+  const permitidos = ["colombiano", "colombiana", "colombia"]; // valores aceptados
+  if (!permitidos.includes(nacionalidadNormalizada)) {
+    error.textContent = "Sólo nacidos en Colombia pueden aplicar.";
+    return; // corta aquí si no pasa
+  }
+
+  // VALIDACIÓN 3: Razón
+  if (!razon) {
+    error.textContent = "Por favor cuéntanos tu razón principal.";
+    return;
+  }
+
+  // Si pasa todas las validaciones limpiamos el error
+  error.textContent = "";
+
+  // Guardamos en el objeto global `datos`
+  datos.edad = edad;
+  datos.nacionalidad = nacionalidad;
+  datos.razon = razon;
+
+  // Cambiamos la vista: ocultar paso 2 y mostrar paso 3
+  document.getElementById('final').textContent =
+    "Gracias " + datos.nombre + ". Ahora necesitamos tu email para confirmar tu respuesta.";
+  document.getElementById('paso2').classList.add('hidden');
+  document.getElementById('paso3').classList.remove('hidden');
+}
+
+    // === PASO 3 ===
+    function enviarFormulario() {
+      const email = document.getElementById('email').value.trim();
+      const error = document.getElementById('error-email');
+      const mensaje = document.getElementById('mensaje-final');
+
+      if (!email.includes("@")) {
+        error.textContent = "Email inválido.";
+        return;
+      }
+
+      error.textContent = "";
+      datos.email = email;
+
+      // Por ahora solo mostramos en pantalla.
+      mensaje.textContent = "Solicitud recibida " + datos.nombre + ", recibirás un acuse de recibo en " + datos.email + "," + "y en un periodo de 12 semanas la debida confirmación o descarte de tu solicitud.";
+      console.log("Datos finales:", datos);
+
+      // Aquí luego conectaremos con el backend (nodemailer).
+    }
+
+    // === AVERIGUADOR DE DEUDA (MÓDULO ANTERIOR) ===
+    function averigua() {
+      const nombre = prompt("¿Cómo te llamas?");
+      if (!nombre) return;
+      document.getElementById('resultado-averiguar').textContent = "Hola " + nombre + ", según los registros de la revisora, ahora tienes muchas deudas 😅 Aclara tu situación financiera antes de volver a aplicar; ¡gracias!";
+    }
+
+    // === BOTÓN "IR ARRIBA" ===
+document.getElementById("toTop").addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"   // desplazamiento suave
+  });
+});
+
+  </script>
+</body>
+</html>

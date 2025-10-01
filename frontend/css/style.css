@@ -1,0 +1,19 @@
+/* style.css
+   Explicación: estilos mínimos para claridad visual y para que los mensajes
+   se vean claramente. Ajusta colores si quieres.
+*/
+:root{
+  --bg:#fafafa; --card:#fff; --accent:#0b6; --err:#b00020; --text:#111;
+}
+*{box-sizing:border-box}
+body{font-family:system-ui,Segoe UI,Roboto,Arial; background:var(--bg); color:var(--text); margin:0; padding:24px;}
+main{max-width:780px;margin:0 auto}
+.card{background:var(--card); padding:16px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,.04); margin-bottom:16px}
+h1,h2{margin:6px 0 14px 0}
+input,textarea,button{font-size:15px}
+input,textarea{width:100%; padding:10px; border-radius:8px; border:1px solid #ddd; margin:6px 0 12px}
+button{padding:8px 12px; border-radius:8px; background:#f2f2f2; border:1px solid #ddd; cursor:pointer}
+.error{color:var(--err); margin-top:6px}
+.result{color:var(--accent); margin-top:8px}
+.step{margin-top:10px}
+button + button{margin-left:8px}
