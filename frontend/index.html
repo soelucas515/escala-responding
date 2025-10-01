@@ -1,371 +1,319 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Escala — Aplicación al beneficio</title>
+
+  <!-- === FILE: styles.css (inlined) ===
+       Comentarios: usa solo /* ... */ en CSS para evitar romper el parseo.
+  -->
   <style>
-    /* === ESTILOS GENERALES === */
-    body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f7fa;
-}
-
-main {
-  width: 100%;
-  max-width: 600px;
-  margin: 20px auto; /* centrado automático */
-}
-    h1 {
-      text-align: center;
-      color: #222;
-    }
-
-    /* Franja corporativa */
-.topbar {
-  width: 100%;
-  background-color: #222;     /* color corporativo oscuro */
-  color: #fff;
-  text-align: center;
-  padding: 0.5rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-    /* Hero completo */
-header.hero {
-  position: relative;       /* permite poner elementos encima */
-  width: 100%;
-  height: 60vh;             /* ocupa 60% de la altura de la pantalla */
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-/* Imagen de fondo */
-header.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;        /* se recorta sin deformar */
-  display: block;
-}
-
-/* Menú superpuesto */
-header.hero .menu {
-  position: absolute;       /* se posiciona encima de la imagen */
-  top: 50%;                 /* mitad vertical */
-  left: 50%;                /* mitad horizontal */
-  transform: translate(-50%, -50%); /* centrado exacto */
-  text-align: center;
-}
-
-/* Estilo de los botones del menú */
-header.hero .menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1.5rem;
-}
-
-header.hero .menu ul li a {
-  text-decoration: none;
-  background: rgba(255,255,255,0.7); /* fondo translúcido */
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  color: #333;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-header.hero .menu ul li a:hover {
-  background: rgba(255,255,255,0.9);
-}
-
-    /* === TARJETICAS (CARDS) === */
-    .card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    .card img {
-      display: block;
-      margin: 0 auto 15px auto;
-      max-width: 90%;
-      border-radius: 12px;
-    }
-
-    /* Footer */
-footer {
-  background: #f4f4f4;
-  padding: 1rem;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.footer-links a {
-  color: #333;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-/* Botón “Ir arriba” */
-#toTop {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 6px;
-  background: #222;
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-#toTop:hover {
-  background: #444;
-}
-
-    /* === FORMULARIO === */
-    label {
-      display: block;
-      margin-top: 12px;
-      font-weight: bold;
-    }
-    input, textarea, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-    }
-    button {
-      background: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: 16px;
-      font-size: 15px;
-      transition: background 0.2s;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    .hidden {
-      display: none;
-    }
-    .mensaje {
-      margin-top: 12px;
-      font-weight: bold;
-      color: #007bff;
-    }
-    .error {
-      margin-top: 8px;
-      color: red;
-    }
-
-
+    /* === FILE: styles.css === */
+    body { margin:0; font-family:Arial, sans-serif; background:#f5f7fa; }
+    main { width:100%; max-width:600px; margin:20px auto; }
+    h1 { text-align:center; color:#222; }
+    .topbar{ width:100%; background:#222; color:#fff; text-align:center; padding:.5rem; font-weight:bold; letter-spacing:2px; }
+    header.hero{ position:relative; width:100%; height:60vh; overflow:hidden; margin:0; padding:0; }
+    header.hero img{ width:100%; height:100%; object-fit:cover; display:block; }
+    header.hero .menu{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
+    header.hero .menu ul{ list-style:none; margin:0; padding:0; display:flex; gap:1.5rem; }
+    header.hero .menu ul li a{ text-decoration:none; background:rgba(255,255,255,.7); padding:.6rem 1.2rem; border-radius:8px; color:#333; font-weight:bold; transition:background .3s; }
+    header.hero .menu ul li a:hover{ background:rgba(255,255,255,.9); }
+    .card{ background:white; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,.08); padding:20px; margin-bottom:20px; }
+    .card img{ display:block; margin:0 auto 15px; max-width:90%; border-radius:12px; }
+    footer{ background:#f4f4f4; padding:1rem; text-align:center; margin-top:2rem; }
+    .footer-links{ display:flex; justify-content:center; gap:1.5rem; margin-bottom:1rem; }
+    .footer-links a{ color:#333; text-decoration:none; font-size:.9rem; }
+    #toTop{ padding:.5rem 1rem; border:none; border-radius:6px; background:#222; color:#fff; cursor:pointer; transition:background .3s; }
+    #toTop:hover{ background:#444; }
+    label{ display:block; margin-top:12px; font-weight:bold; }
+    input, textarea, button { width:100%; padding:10px; margin-top:6px; border:1px solid #ccc; border-radius:8px; font-size:14px; box-sizing:border-box; }
+    button{ background:#007bff; color:#fff; border:none; cursor:pointer; margin-top:16px; font-size:15px; transition:background .2s; }
+    button:hover{ background:#0056b3; }
+    .hidden{ display:none; }
+    .mensaje{ margin-top:12px; font-weight:bold; color:#007bff; }
+    .error{ margin-top:8px; color:red; }
+    table{ width:100%; border-collapse:collapse; margin-top:10px; }
+    th, td{ border:1px solid #ddd; padding:8px; text-align:left; }
   </style>
 </head>
 <body>
-<header> 
-<!-- Franja corporativa -->
-<div class="topbar">
-  <p>ESCALA RESPONDING</p>
-</div>
 
-<header class="hero">
-  <img src="hero.jpg" alt="Imagen principal">
-  <nav class="menu">
-    <ul>
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="casos.html">Casos de Éxito</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </nav>
-</header>
+  <!-- === FILE: header.html === -->
+  <header>
+    <div class="topbar"><p>ESCALA RESPONDING</p></div>
 
-  <main> 
+    <header class="hero" role="banner" aria-label="Hero">
+      <img src="hero.jpg" alt="Imagen principal">
+      <nav class="menu" aria-label="Menú principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="casos.html">Casos de Éxito</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="lista.html">Lista</a></li>
+        </ul>
+      </nav>
+    </header>
+  </header>
 
-    <!-- TARJETA DE IMAGEN INICIAL -->
-    <div class="card">
-    <h1>Escala Responding <br> Recibe beneficios</h1>
+  <main>
+    <!-- === FILE: tarjeta0-hero.html === -->
+    <div class="card" id="tarjeta0-hero">
+      <h1>Escala Responding <br> Recibe beneficios</h1>
       <p style="text-align:justified;">Bienvenido a Escala Responding. Revisa los programas vigentes y aplica a los que estén a tu alcance. Responde paso a paso en cada aplicación y gana ya.</p>
       <img src="escala.jpg" alt="Hero Escala Responding">
     </div>
 
-    <!-- TARJETA DE BENEFICIO 614 -->
-    <div class="card">
+    <!-- === FILE: tarjeta2-beneficio614.html === -->
+    <div class="card" id="tarjeta2-beneficio614">
       <h2>Aplicación Beneficio 614 - Sólo colombianos</h2>
-      <img src="beneficio.jpg" alt="Diseño">
+      <img src="beneficio.jpg" alt="Beneficio 614">
       <p style="text-align:center;">Estamos aceptando solicitantes a este beneficio hasta finales octubre/2025.</p>
 
-      <!-- Paso 1: pedir nombre -->
+      <!-- Paso 1 -->
       <div id="paso1">
         <label for="nombre">Escribe tu nombre completo</label>
-        <input type="text" id="nombre">
+        <input type="text" id="nombre" autocomplete="name" />
         <button onclick="guardarNombre()">Siguiente</button>
-        <div id="error-nombre" class="error"></div>
+        <div id="error-nombre" class="error" aria-live="polite"></div>
       </div>
 
-      <!-- Paso 2: mostrar saludo y pedir más info -->
+      <!-- Paso 2 -->
       <div id="paso2" class="hidden">
-        <p id="saludo"></p>
+        <p id="saludo" aria-live="polite"></p>
+
         <label for="edad">Edad</label>
-        <input type="number" id="edad">
+        <input type="number" id="edad" min="0" />
 
         <label for="nacionalidad">Nacionalidad</label>
-        <input type="text" id="nacionalidad">
+        <input type="text" id="nacionalidad" />
 
-        <label for="razon">¿Por qué quieres aplicar?</label>
-        <textarea id="razon"></textarea>
+        <label for="argumento">¿Por qué quieres aplicar?</label>
+        <textarea id="argumento" rows="4"></textarea>
 
         <button onclick="guardarDetalles()">Siguiente</button>
-        <div id="error-detalles" class="error"></div>
+        <div id="error-detalles" class="error" aria-live="polite"></div>
       </div>
 
-      <!-- Paso 3: pedir email -->
+      <!-- Paso 3 -->
       <div id="paso3" class="hidden">
-        <p id="final"></p>
+        <p id="final" aria-live="polite"></p>
+
         <label for="email">Tu email</label>
-        <input type="email" id="email">
-        <button onclick="enviarFormulario()">Enviar</button>
-        <div id="error-email" class="error"></div>
-        <div id="mensaje-final" class="mensaje"></div>
+        <input type="email" id="email" autocomplete="email" />
+
+        <h3>Tus datos</h3>
+        <table id="tabla-resumen" aria-describedby="final">
+          <thead>
+            <tr><th>Campo</th><th>Valor</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <!-- solo un botón enviar (no hay botón "mostrar resumen") -->
+        <button id="enviarBtn" onclick="enviarFormulario()">Enviar información</button>
+
+        <div id="error-email" class="error" aria-live="polite"></div>
+        <div id="mensaje-final" class="mensaje" aria-live="polite"></div>
       </div>
     </div>
 
-    <!-- TARJETA DE AVERIGUADOR (MÓDULO APARTE) -->
-    <div class="card">
+    <!-- === FILE: tarjeta1-averiguador.html === -->
+    <div class="card" id="tarjeta1-averiguador">
       <h2>Averiguador de deudas</h2>
       <img src="alivio.webp" alt="Alivio de deudas">
       <button onclick="averigua()">Averiguar</button>
-      <div id="resultado-averiguar" class="mensaje"></div>
+      <div id="resultado-averiguar" class="mensaje" aria-live="polite"></div>
     </div>
+
   </main>
 
-<!-- Footer -->
-<footer>
-  <div class="footer-links">
-    <a href="#">Cookies</a>
-    <a href="#">Aviso Legal</a>
-    <a href="#">Política de Privacidad</a>
-  </div>
-  <button id="toTop">⬆ Ir arriba</button>
-  <p class="firma">© 2025 Escala Responding — Gracias por confiar en nosotros</p>
-</footer>
+  <!-- === FILE: footer.html === -->
+  <footer>
+    <div class="footer-links">
+      <a href="#">Cookies</a>
+      <a href="#">Reporta un problema</a>
+      <a href="#">Política Privacidad</a>
+      <a href="#">Aviso Legal</a>
+    </div>
+    <button id="toTop">⬆ Ir arriba</button>
+    <p class="firma">© 2025 Escala Responding — Gracias por confiar en nosotros</p>
+  </footer>
 
-       
-
+  <!-- === FILE: app.js ===
+       Comentarios en JS marcados por secciones "FILE" para que puedas separar luego.
+       Comenta "por qué" (breve) y deja funciones en global para facilitar pruebas y lectura.
+  -->
   <script>
-    // === VARIABLES GLOBALES ===
-    let datos = {};
+    /* === FILE: globals.js === */
+    // Por qué: `datos` es el estado central compartido entre pasos; lo dejamos en window
+    window.datos = window.datos || {};
 
-    // === PASO 1 ===
+    /* === FILE: tarjeta2-beneficio614.js === */
+    // guardarNombre: valida y guarda el nombre, avanza a paso 2
     function guardarNombre() {
-      const nombre = document.getElementById('nombre').value.trim();
-      const error = document.getElementById('error-nombre');
+      const nombreEl = document.getElementById('nombre');
+      const errorEl = document.getElementById('error-nombre');
+      const nombre = (nombreEl.value || '').trim();
+
       if (!nombre) {
-        error.textContent = "Por favor ingresa tu nombre.";
+        errorEl.textContent = "Por favor ingresa tu nombre.";
         return;
       }
-      error.textContent = "";
-      datos.nombre = nombre;
+      errorEl.textContent = "";
+
+      window.datos.nombre = nombre; // Guardado centralizado
       document.getElementById('saludo').textContent = "Hola " + nombre + ", completa tus datos:";
       document.getElementById('paso1').classList.add('hidden');
       document.getElementById('paso2').classList.remove('hidden');
     }
-// === PASO 2 ===
-function guardarDetalles() {
-  const edad = parseInt(document.getElementById('edad').value);
-  const nacionalidad = document.getElementById('nacionalidad').value.trim();
-  const razon = document.getElementById('razon').value.trim();
-  const error = document.getElementById('error-detalles');
 
-  // VALIDACIÓN 1: Edad
-  if (!edad || edad < 18) {
-    error.textContent = "Debes ser mayor de edad para participar.";
-    return; // corta aquí si no pasa
-  }
+    // guardarDetalles: valida edad/nacionalidad/argumento, guarda y avanza a paso3
+    function guardarDetalles() {
+      const edadStr = document.getElementById('edad').value;
+      const nacionalidadRaw = (document.getElementById('nacionalidad').value || '').trim();
+      const argumento = (document.getElementById('argumento').value || '').trim();
+      const errorEl = document.getElementById('error-detalles');
 
-  // VALIDACIÓN 2: Nacionalidad
-  const nacionalidadNormalizada = nacionalidad.toLowerCase(); // normalizamos
-  const permitidos = ["colombiano", "colombiana", "colombia"]; // valores aceptados
-  if (!permitidos.includes(nacionalidadNormalizada)) {
-    error.textContent = "Sólo nacidos en Colombia pueden aplicar.";
-    return; // corta aquí si no pasa
-  }
+      const edad = Number.parseInt(edadStr, 10);
 
-  // VALIDACIÓN 3: Razón
-  if (!razon) {
-    error.textContent = "Por favor cuéntanos tu razón principal.";
-    return;
-  }
-
-  // Si pasa todas las validaciones limpiamos el error
-  error.textContent = "";
-
-  // Guardamos en el objeto global `datos`
-  datos.edad = edad;
-  datos.nacionalidad = nacionalidad;
-  datos.razon = razon;
-
-  // Cambiamos la vista: ocultar paso 2 y mostrar paso 3
-  document.getElementById('final').textContent =
-    "Gracias " + datos.nombre + ". Ahora necesitamos tu email para confirmar tu respuesta.";
-  document.getElementById('paso2').classList.add('hidden');
-  document.getElementById('paso3').classList.remove('hidden');
-}
-
-    // === PASO 3 ===
-    function enviarFormulario() {
-      const email = document.getElementById('email').value.trim();
-      const error = document.getElementById('error-email');
-      const mensaje = document.getElementById('mensaje-final');
-
-      if (!email.includes("@")) {
-        error.textContent = "Email inválido.";
+      // Validación: edad entera y >= 18
+      if (!Number.isInteger(edad) || edad < 18) {
+        errorEl.textContent = "Debes ser mayor de edad para participar.";
         return;
       }
 
-      error.textContent = "";
-      datos.email = email;
+      // Normalizamos nacionalidad para comparar (minimizar errores de mayúsculas)
+      const nacionalidadNormalizada = (nacionalidadRaw || '').toLowerCase();
+      const permitidos = ["colombiano", "colombiana", "colombia"];
+      if (!permitidos.includes(nacionalidadNormalizada)) {
+        errorEl.textContent = "Sólo nacidos en Colombia pueden aplicar.";
+        return;
+      }
 
-      // Por ahora solo mostramos en pantalla.
-      mensaje.textContent = "Solicitud recibida " + datos.nombre + ", recibirás un acuse de recibo en " + datos.email + "," + "y en un periodo de 12 semanas la debida confirmación o descarte de tu solicitud.";
-      console.log("Datos finales:", datos);
+      // Argumento debe tener contenido (trim evita solo espacios)
+      if (!argumento) {
+        errorEl.textContent = "Por favor explica claramente tu argumento principal.";
+        return;
+      }
 
-      // Aquí luego conectaremos con el backend (nodemailer).
+      // Limpio error y guardo
+      errorEl.textContent = "";
+      window.datos.edad = edad;
+      window.datos.nacionalidad = nacionalidadRaw;
+      window.datos.argumento = argumento;
+
+      document.getElementById('final').textContent =
+        "Gracias " + window.datos.nombre + ". Ahora necesitamos tu email para confirmar tu respuesta.";
+      document.getElementById('paso2').classList.add('hidden');
+      document.getElementById('paso3').classList.remove('hidden');
+
+      // Llenamos la tabla automáticamente (sin botón adicional)
+      actualizarTabla();
     }
 
-    // === AVERIGUADOR DE DEUDA (MÓDULO ANTERIOR) ===
+    // actualizarTabla: construye filas dinámicamente desde `window.datos`
+    function actualizarTabla() {
+      const tbody = document.querySelector('#tabla-resumen tbody');
+      tbody.innerHTML = ''; // limpiamos antes
+      // Orden de presentación (opcional)
+      const order = ['nombre', 'edad', 'nacionalidad', 'argumento', 'email'];
+      const labels = {
+        nombre: 'Nombre',
+        edad: 'Edad',
+        nacionalidad: 'Nacionalidad',
+        argumento: 'Argumento',
+        email: 'Email'
+      };
+
+      // Por qué: iteramos en orden para que la tabla sea predecible
+      order.forEach(key => {
+        if (window.datos[key] !== undefined && String(window.datos[key]).trim() !== '') {
+          const tr = document.createElement('tr');
+
+          const tdCampo = document.createElement('td');
+          tdCampo.textContent = labels[key] || key;
+
+          const tdValor = document.createElement('td');
+          tdValor.textContent = window.datos[key];
+
+          tr.appendChild(tdCampo);
+          tr.appendChild(tdValor);
+          tbody.appendChild(tr);
+        }
+      });
+    }
+
+    // enviarFormulario: valida email, actualiza tabla e intenta enviar al backend.
+    async function enviarFormulario() {
+      const emailInput = document.getElementById('email');
+      const email = (emailInput.value || '').trim();
+      const errorEl = document.getElementById('error-email');
+      const mensajeEl = document.getElementById('mensaje-final');
+      const enviarBtn = document.getElementById('enviarBtn');
+
+      // Validación simple de email (regex ligera)
+      const emailRegex = /^\S+@\S+\.\S+$/;
+      if (!emailRegex.test(email)) {
+        errorEl.textContent = "Email inválido.";
+        return;
+      }
+      errorEl.textContent = "";
+
+      // Guardar en estado y refrescar tabla para mostrar email
+      window.datos.email = email;
+      actualizarTabla();
+
+      // Indicar al usuario que se intenta enviar
+      mensajeEl.textContent = "Enviando...";
+      enviarBtn.disabled = true;
+
+      try {
+        // Intentamos enviar al endpoint placeholder; si no existe, caerá al catch o resp.ok será false
+        const resp = await fetch('/api/solicitudes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(window.datos)
+        });
+
+        if (resp.ok) {
+          mensajeEl.textContent = "Solicitud enviada correctamente. Gracias.";
+          console.log("Enviado al backend:", window.datos);
+        } else {
+          // Si el backend responde con error, guardamos localmente como plan B
+          mensajeEl.textContent = `No se pudo enviar (status ${resp.status}). Guardado localmente.`;
+          localStorage.setItem('ultimaSolicitud', JSON.stringify(window.datos));
+          console.warn('Respuesta no OK al enviar:', resp.status);
+        }
+      } catch (err) {
+        // Probable que el backend no esté configurado o CORS/offline
+        mensajeEl.textContent = "No se pudo conectar al backend. Datos guardados localmente.";
+        localStorage.setItem('ultimaSolicitud', JSON.stringify(window.datos));
+        console.error("Error enviando datos:", err);
+      } finally {
+        enviarBtn.disabled = false;
+      }
+    }
+
+    /* === FILE: tarjeta1-averiguador.js === */
+    // Módulo independiente: no toca `datos` del formulario
     function averigua() {
+      // Por qué: interacción sencilla; no requiere estado complejo
       const nombre = prompt("¿Cómo te llamas?");
       if (!nombre) return;
-      document.getElementById('resultado-averiguar').textContent = "Hola " + nombre + ", según los registros de la revisora, ahora tienes muchas deudas 😅 Aclara tu situación financiera antes de volver a aplicar; ¡gracias!";
+      document.getElementById('resultado-averiguar').textContent =
+        "Hola " + nombre + ", según los registros de la revisora, ahora tienes muchas deudas 😅 Aclara tu situación financiera antes de volver a aplicar; ¡gracias!";
     }
 
-    // === BOTÓN "IR ARRIBA" ===
-document.getElementById("toTop").addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"   // desplazamiento suave
-  });
-});
+    /* === FILE: utils.js === */
+    // listener para botón 'Ir arriba'
+    document.getElementById("toTop").addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 
+    // Para facilitar el aprendizaje: si quieres ver la última solicitud guardada localmente, abre la consola:
+    // console.log('ultimaSolicitud localStorage =', localStorage.getItem('ultimaSolicitud'));
   </script>
 </body>
 </html>
