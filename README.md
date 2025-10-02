@@ -12,5 +12,6 @@ enfocada en ofrecer **alivio de deudas** mediante mensajes claros y personalizad
 ## Uso
 
 1. Clona este repositorio:
-   ```bash
-   git clone https://github.com/soelucas515/esfera-responding.git
+  ```bash
+   git clone https://github.com/soelucas515/escala-responding.git
+  ```

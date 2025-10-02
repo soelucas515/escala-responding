@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "nombre": "Cuenta de Ahorros Segura",
+    "perfil": "conservador",
+    "plazo": "corto",
+    "rendimiento": "2% anual",
+    "descripcion": "Producto ideal para quienes buscan seguridad absoluta.",
+    "imagen": "assets/img/ahorros.png"
+  },
+  {
+    "id": 2,
+    "nombre": "Fondo Moderado de Inversión",
+    "perfil": "moderado",
+    "plazo": "mediano",
+    "rendimiento": "6% anual",
+    "descripcion": "Rinde mejor que una cuenta de ahorros, con riesgo moderado.",
+    "imagen": "assets/img/fondo-moderado.png"
+  },
+  {
+    "id": 3,
+    "nombre": "Acciones de Crecimiento",
+    "perfil": "arriesgado",
+    "plazo": "largo",
+    "rendimiento": "15% anual (variable)",
+    "descripcion": "Alto riesgo pero con posibilidad de gran rendimiento.",
+    "imagen": "assets/img/acciones.png"
+  }
+]

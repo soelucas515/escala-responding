@@ -1,0 +1,12 @@
+{
+  "name": "escala-responding-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Aquí puedes configurar Vite o un servidor local más adelante'",
+    "build": "echo 'Aquí compilarías si usas un bundler'",
+    "start": "serve public"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

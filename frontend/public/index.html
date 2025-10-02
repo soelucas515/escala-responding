@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Escala Responding — Beneficios escalables</title>
+
+  <!-- === FILE: styles.css === Comentarios solo /* ... */ en CSS -->
+<style>
+/* === FILE: styles.css === */
+body { margin:0; font-family:Arial, sans-serif; background:#f5f7fa; }
+main { width:100%; max-width:600px; margin:20px auto; }
+h1 { text-align:center; color:#222; }
+.topbar{ width:100%; background:#222; color:#fff; text-align:center; padding:.5rem; font-weight:bold; letter-spacing:2px; }
+header.hero{ position:relative; width:100%; height:60vh; overflow:hidden; margin:0; padding:0; }
+header.hero img{ width:100%; height:100%; object-fit:cover; display:block; }
+header.hero .menu{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
+header.hero .menu ul{ list-style:none; margin:0; padding:0; display:flex; gap:1.5rem; }
+header.hero .menu ul li a{ text-decoration:none; background:rgba(255,255,255,.7); padding:.6rem 1.2rem; border-radius:8px; color:#333; font-weight:bold; transition:background .3s; }
+header.hero .menu ul li a:hover{ background:rgba(255,255,255,.9); }
+.card{ background:white; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,.08); padding:20px; margin-bottom:20px; }
+.card img{ display:block; margin:0 auto 15px; max-width:90%; border-radius:12px; }
+footer{ background:#f4f4f4; padding:1rem; text-align:center; margin-top:2rem; }
+.footer-links{ display:flex; justify-content:center; gap:1.5rem; margin-bottom:1rem; }
+.footer-links a{ color:#333; text-decoration:none; font-size:.9rem; }
+#toTop{ padding:.5rem 1rem; border:none; border-radius:6px; background:#222; color:#fff; cursor:pointer; transition:background .3s; }
+#toTop:hover{ background:#444; }
+label{ display:block; margin-top:12px; font-weight:bold; }
+input, textarea, button { width:100%; padding:10px; margin-top:6px; border:1px solid #ccc; border-radius:8px; font-size:14px; box-sizing:border-box; }
+button{ background:#007bff; color:#fff; border:none; cursor:pointer; margin-top:16px; font-size:15px; transition:background .2s; }
+button:hover{ background:#0056b3; }
+.hidden{ display:none; }
+.mensaje{ margin-top:12px; font-weight:bold; color:#007bff; }
+.error{ margin-top:8px; color:red; }
+table{ width:100%; border-collapse:collapse; margin-top:10px; }
+th, td{ border:1px solid #ddd; padding:8px; text-align:left; }
+.card-averiguador img { max-width: 70%; height: auto; margin-bottom: 12px; }
+.card-averiguador { text-align: center; }
+.card-averiguador table { margin-top: 15px; font-size: 14px; }
+</style>
+</head>
+<body>
+
+  <!-- === FILE: header.html === -->
+<header>
+    <div class="topbar"><p>ESCALA RESPONDING te da la bienvenida</p></div>
+
+    <header class="hero" role="banner" aria-label="Hero">
+      <img src="hero.jpg" alt="Imagen principal">
+      <nav class="menu" aria-label="Menú principal">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="podio.html">Podio</a></li>
+          <li><a href="lista.html">Lista</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+  <main>
+    <!-- === FILE: tarjeta0-hero.html === -->
+    <div class="card" id="tarjeta0-hero">
+      <h1>ESCALA RESPONDING <br> Beneficios escalables</h1>
+      <p style="text-align:justified;">Bienvenido a Escala Responding. Revisa los programas vigentes y aplica a los que estén a tu alcance. Responde paso a paso en cada aplicación y gana ya.</p>
+      <img src="escala.jpg" alt="Hero Escala Responding">
+    </div>
+
+ <!-- ======================== -->
+<!-- Pegar dentro de <main>  -->
+<!-- ======================== -->
+<!-- === FILE: tarjeta3-recomendador.html === -->
+<div class="card" id="tarjeta3-recomendador">
+  <h2>Recomendador Financiero — Escala Responding Bank</h2>
+  <img src="instrumento.jpg" alt="Recomendador financiero">
+
+  <!-- Paso 1 -->
+  <div id="rec-paso1">
+    <label for="rec-nombre">¿Cómo te llamas?</label>
+    <input type="text" id="rec-nombre" autocomplete="name" />
+    <button onclick="rec_guardarNombre()">Siguiente</button>
+    <div id="rec-error1" class="error"></div>
+  </div>
+
+  <!-- Paso 2 -->
+  <div id="rec-paso2" class="hidden">
+    <label for="rec-perfil">Selecciona tu perfil de riesgo:</label>
+    <select id="rec-perfil">
+      <option value="">-- Selecciona --</option>
+      <option value="conservador">Conservador</option>
+      <option value="moderado">Moderado</option>
+      <option value="arriesgado">Arriesgado</option>
+    </select>
+    <button onclick="rec_guardarPerfil()">Siguiente</button>
+    <div id="rec-error2" class="error"></div>
+  </div>
+
+  <!-- Paso 3 -->
+  <div id="rec-paso3" class="hidden">
+    <label for="rec-plazo">¿Cuál es tu plazo de inversión?</label>
+    <select id="rec-plazo">
+      <option value="">-- Selecciona --</option>
+      <option value="corto">Corto</option>
+      <option value="mediano">Mediano</option>
+      <option value="largo">Largo</option>
+    </select>
+    <button onclick="rec_mostrarRecomendacion()">Ver recomendación</button>
+    <div id="rec-error3" class="error"></div>
+  </div>
+
+  <!-- Resultado (tabla + ficha producto) -->
+  <div id="rec-resultado" class="hidden">
+    <h3 id="rec-titulo"></h3>
+    <img id="rec-imagen" src="" alt="" style="display:block; max-width:90%; margin:10px auto; border-radius:12px;">
+    <p id="rec-descripcion"></p>
+    <p><strong>Rendimiento estimado:</strong> <span id="rec-rendimiento"></span></p>
+
+    <h4>Resumen (en pantalla)</h4>
+    <table id="rec-tabla">
+      <thead><tr><th>Campo</th><th>Valor</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <button id="rec-confirm-btn" onclick="rec_confirmar()">Confirmar recomendación</button>
+    <div id="rec-mensaje" class="mensaje"></div>
+  </div>
+</div>
+
+    <!-- === FILE: tarjeta2-beneficio614.html === -->
+    <div class="card" id="tarjeta2-beneficio614">
+      <h2>Aplicación Beneficio 614 - Sólo colombianos</h2>
+      <img src="beneficio.jpg" alt="Beneficio 614">
+      <p style="text-align:center;">Estamos aceptando solicitantes a este beneficio hasta finales octubre/2025.</p>
+
+      <!-- Paso 1 -->
+      <div id="paso1">
+        <label for="nombre">Escribe tu nombre completo</label>
+        <input type="text" id="nombre" autocomplete="name" />
+        <button onclick="guardarNombre()">Siguiente</button>
+        <div id="error-nombre" class="error" aria-live="polite"></div>
+      </div>
+
+      <!-- Paso 2 -->
+      <div id="paso2" class="hidden">
+        <p id="saludo" aria-live="polite"></p>
+
+        <label for="edad">Edad</label>
+        <input type="number" id="edad" min="0" />
+
+        <label for="nacionalidad">Nacionalidad</label>
+        <input type="text" id="nacionalidad" />
+
+        <label for="argumento">¿Por qué quieres aplicar?</label>
+        <textarea id="argumento" rows="4"></textarea>
+
+        <button onclick="guardarDetalles()">Siguiente</button>
+        <div id="error-detalles" class="error" aria-live="polite"></div>
+      </div>
+
+      <!-- Paso 3 -->
+      <div id="paso3" class="hidden">
+        <p id="final" aria-live="polite"></p>
+
+        <label for="email">Tu email</label>
+        <input type="email" id="email" autocomplete="email" />
+
+        <h3>Tus datos</h3>
+        <table id="tabla-resumen" aria-describedby="final">
+          <thead>
+            <tr><th>Campo</th><th>Valor</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <!-- solo un botón enviar (no hay botón "mostrar resumen") -->
+        <button id="enviarBtn" onclick="enviarFormulario()">Enviar información</button>
+
+        <div id="error-email" class="error" aria-live="polite"></div>
+        <div id="mensaje-final" class="mensaje" aria-live="polite"></div>
+      </div>
+    </div>
+
+<!-- === FILE: tarjeta1-averiguador.html === -->
+<div class="card" id="tarjeta1-averiguador">
+  <h2>Averiguador de deudas</h2>
+  <img src="alivio.webp" alt="Alivio de deudas">    
+  <p style="text-align:justify;">
+    Consulta sin pagar sobre tu actual situación de deuda e indaga sobre el alivio.
+  </p>
+
+  <!-- Paso 1 -->
+  <div id="averiguador-paso1">
+    <label for="averiguador-nombre">Escribe tu nombre completo</label>
+    <input type="text" id="averiguador-nombre" autocomplete="name" />
+    <button onclick="averiguadorGuardarNombre()">Siguiente</button>
+    <div id="averiguador-error-nombre" class="error" aria-live="polite"></div>
+  </div>
+
+  <!-- Paso 2 -->
+  <div id="averiguador-paso2" class="hidden">
+    <p id="averiguador-saludo" aria-live="polite"></p>
+
+    <label for="averiguador-pregunta">¿Tienes deudas actualmente?</label>
+    <select id="averiguador-pregunta">
+      <option value="">Selecciona...</option>
+      <option value="si">Sí</option>
+      <option value="no">No</option>
+    </select>
+
+    <button onclick="averiguadorFinalizar()">Finalizar</button>
+    <div id="averiguador-error-detalles" class="error" aria-live="polite"></div>
+  </div>
+
+  <!-- Resultado final -->
+  <div id="averiguador-resultado" class="hidden">
+    <p id="averiguador-mensaje-final" aria-live="polite"></p>
+  </div>
+</div>
+
+  </main>
+
+  <!-- === FILE: footer.html === -->
+<footer>
+    <div class="footer-links">
+      <a href="cookies.html">Cookies</a>
+      <a href="reporte.html">Reporta un problema</a>
+      <a href="privacidad.html">Política Privacidad</a>
+      <a href="legal.html">Aviso Legal</a>
+    </div>
+    <button id="toTop">⬆ Ir arriba</button>
+    <p class="firma">© 2025 Escala Responding — Gracias por confiar en nosotros</p>
+  </footer>
+
+  <!-- === FILE: app.js ===
+       Comentarios en JS marcados por secciones "FILE" para que puedas separar luego.
+       Comenta "por qué" (breve) y deja funciones en global para facilitar pruebas y lectura.
+  -->
+    <!-- === FILE: app.js === -->
+  <script>
+    /* ==========================
+       Inicialización global
+       ========================== */
+    window.datos = window.datos || {};              // para tarjeta 2 (Beneficio 614)
+    window.averiguadorDatos = window.averiguadorDatos || {}; // para tarjeta 1 (Averiguador)
+    window.recDatos = window.recDatos || {};        // para tarjeta 3 (Recomendador financiero)
+
+    /* === FILE: tarjeta3-recomendador.js === */
+    function rec_guardarNombre() {
+      const nombre = (document.getElementById('rec-nombre').value || '').trim();
+      const errorEl = document.getElementById('rec-error1');
+      if (!nombre) {
+        errorEl.textContent = "Ingresa tu nombre.";
+        return;
+      }
+      errorEl.textContent = "";
+      window.recDatos.nombre = nombre;
+      document.getElementById('rec-paso1').classList.add('hidden');
+      document.getElementById('rec-paso2').classList.remove('hidden');
+    }
+
+    function rec_guardarPerfil() {
+      const perfil = document.getElementById('rec-perfil').value;
+      const errorEl = document.getElementById('rec-error2');
+      if (!perfil) {
+        errorEl.textContent = "Selecciona tu perfil.";
+        return;
+      }
+      errorEl.textContent = "";
+      window.recDatos.perfil = perfil;
+      document.getElementById('rec-paso2').classList.add('hidden');
+      document.getElementById('rec-paso3').classList.remove('hidden');
+    }
+
+    function rec_mostrarRecomendacion() {
+      const plazo = document.getElementById('rec-plazo').value;
+      const errorEl = document.getElementById('rec-error3');
+      if (!plazo) {
+        errorEl.textContent = "Selecciona un plazo.";
+        return;
+      }
+      errorEl.textContent = "";
+      window.recDatos.plazo = plazo;
+
+      // Ejemplo de respuesta "dummy" que se imprime en pantalla
+      const recomendaciones = {
+        conservador: {
+          corto: { titulo: "Depósito a corto plazo", descripcion: "Seguro, bajo rendimiento.", rendimiento: "3%", img: "ahorro.png" },
+          mediano: { titulo: "Bonos del Estado", descripcion: "Seguro, rendimiento medio.", rendimiento: "5%", img: "bonos.png" },
+          largo: { titulo: "Fondos indexados", descripcion: "Diversificación estable.", rendimiento: "7%", img: "fondos.png" }
+        },
+        moderado: {
+          corto: { titulo: "CDT flexible", descripcion: "Rentabilidad media y liquidez.", rendimiento: "6%", img: "cdt.png" },
+          mediano: { titulo: "Acciones mixtas", descripcion: "Diversificado, volatilidad moderada.", rendimiento: "10%", img: "acciones.png" },
+          largo: { titulo: "Fondo pensiones", descripcion: "Orientado al retiro.", rendimiento: "12%", img: "pensiones.png" }
+        },
+        arriesgado: {
+          corto: { titulo: "Trading", descripcion: "Alto riesgo, alta volatilidad.", rendimiento: "variable", img: "trading.png" },
+          mediano: { titulo: "Startups", descripcion: "Inversión en empresas emergentes.", rendimiento: "20%+", img: "startup.png" },
+          largo: { titulo: "Criptoactivos", descripcion: "Muy arriesgado.", rendimiento: "???", img: "cripto.png" }
+        }
+      };
+
+      const rec = recomendaciones[window.recDatos.perfil][plazo];
+      document.getElementById('rec-titulo').textContent = rec.titulo;
+      document.getElementById('rec-descripcion').textContent = rec.descripcion;
+      document.getElementById('rec-rendimiento').textContent = rec.rendimiento;
+      document.getElementById('rec-imagen').src = rec.img;
+      document.getElementById('rec-imagen').style.display = "block";
+
+      // Tabla resumen
+      const tbody = document.querySelector('#rec-tabla tbody');
+      tbody.innerHTML = "";
+      Object.keys(window.recDatos).forEach(key => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${key}</td><td>${window.recDatos[key]}</td>`;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('rec-paso3').classList.add('hidden');
+      document.getElementById('rec-resultado').classList.remove('hidden');
+    }
+
+    function rec_confirmar() {
+      document.getElementById('rec-mensaje').textContent =
+        "Gracias " + window.recDatos.nombre + ". Tu recomendación se ha guardado en el sistema.";
+      localStorage.setItem('ultimaRecomendacion', JSON.stringify(window.recDatos));
+    }
+
+    /* === FILE: tarjeta2-beneficio614.js === */
+    function guardarNombre() {
+      const nombreEl = document.getElementById('nombre');
+      const nombre = (nombreEl.value || '').trim();
+      const errorEl = document.getElementById('error-nombre');
+      if (!nombre) {
+        errorEl.textContent = "Por favor ingresa tu nombre.";
+        return;
+      }
+      errorEl.textContent = "";
+      window.datos.nombre = nombre;
+      document.getElementById('saludo').textContent = "Hola " + nombre + ", completa tus datos:";
+      document.getElementById('paso1').classList.add('hidden');
+      document.getElementById('paso2').classList.remove('hidden');
+    }
+
+    function guardarDetalles() {
+      const edad = parseInt(document.getElementById('edad').value, 10);
+      const nacionalidad = (document.getElementById('nacionalidad').value || '').trim();
+      const argumento = (document.getElementById('argumento').value || '').trim();
+      const errorEl = document.getElementById('error-detalles');
+
+      if (!Number.isInteger(edad) || edad < 18) {
+        errorEl.textContent = "Debes ser mayor de edad para participar.";
+        return;
+      }
+      const n = nacionalidad.toLowerCase();
+      if (!["colombiano","colombiana","colombia"].includes(n)) {
+        errorEl.textContent = "Sólo nacidos en Colombia pueden aplicar.";
+        return;
+      }
+      if (!argumento) {
+        errorEl.textContent = "Por favor explica tu argumento.";
+        return;
+      }
+
+      errorEl.textContent = "";
+      Object.assign(window.datos, { edad, nacionalidad, argumento });
+
+      document.getElementById('final').textContent =
+        "Gracias " + window.datos.nombre + ". Ahora necesitamos tu email para confirmar.";
+      document.getElementById('paso2').classList.add('hidden');
+      document.getElementById('paso3').classList.remove('hidden');
+      actualizarTabla();
+    }
+
+    function actualizarTabla() {
+      const tbody = document.querySelector('#tabla-resumen tbody');
+      tbody.innerHTML = "";
+      const labels = { nombre:"Nombre", edad:"Edad", nacionalidad:"Nacionalidad", argumento:"Argumento", email:"Email" };
+      Object.keys(labels).forEach(key => {
+        if (window.datos[key]) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${labels[key]}</td><td>${window.datos[key]}</td>`;
+          tbody.appendChild(tr);
+        }
+      });
+    }
+
+    async function enviarFormulario() {
+      const emailInput = document.getElementById('email');
+      const email = (emailInput.value || '').trim();
+      const errorEl = document.getElementById('error-email');
+      const mensajeEl = document.getElementById('mensaje-final');
+      if (!/^\S+@\S+\.\S+$/.test(email)) {
+        errorEl.textContent = "Email inválido.";
+        return;
+      }
+      errorEl.textContent = "";
+      window.datos.email = email;
+      actualizarTabla();
+      mensajeEl.textContent = "Enviando...";
+
+      try {
+        const resp = await fetch('/api/solicitudes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(window.datos)
+        });
+        if (resp.ok) {
+          mensajeEl.textContent = "Solicitud enviada correctamente.";
+        } else {
+          mensajeEl.textContent = "No se pudo enviar. Guardado localmente.";
+          localStorage.setItem('ultimaSolicitud', JSON.stringify(window.datos));
+        }
+      } catch (err) {
+        mensajeEl.textContent = "Error de conexión. Guardado localmente.";
+        localStorage.setItem('ultimaSolicitud', JSON.stringify(window.datos));
+      }
+    }
+
+    /* === FILE: tarjeta1-averiguador.js === */
+    function averiguadorGuardarNombre() {
+      const nombre = (document.getElementById('averiguador-nombre').value || '').trim();
+      const errorEl = document.getElementById('averiguador-error-nombre');
+      if (!nombre) {
+        errorEl.textContent = "Por favor ingresa tu nombre.";
+        return;
+      }
+      errorEl.textContent = "";
+      window.averiguadorDatos.nombre = nombre;
+      document.getElementById('averiguador-saludo').textContent =
+        "Hola " + nombre + ", necesitamos saber tu situación:";
+      document.getElementById('averiguador-paso1').classList.add('hidden');
+      document.getElementById('averiguador-paso2').classList.remove('hidden');
+    }
+
+    function averiguadorFinalizar() {
+      const respuesta = document.getElementById('averiguador-pregunta').value;
+      const errorEl = document.getElementById('averiguador-error-detalles');
+      if (!respuesta) {
+        errorEl.textContent = "Selecciona una opción.";
+        return;
+      }
+      errorEl.textContent = "";
+      let mensaje = "";
+      if (respuesta === "si") {
+        mensaje = "Lamentablemente, " + window.averiguadorDatos.nombre +
+          " tienes deudas pendientes y no puedes aplicar.";
+      } else {
+        mensaje = "Excelente, " + window.averiguadorDatos.nombre +
+          "! No tienes deudas registradas.";
+      }
+      document.getElementById('averiguador-mensaje-final').textContent = mensaje;
+      document.getElementById('averiguador-paso2').classList.add('hidden');
+      document.getElementById('averiguador-resultado').classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
